@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} Nopixel Directory {% endblock %}
+
+{% block content %}
+<h1>Groups:</h1>
+  <ul>
+    {% for group in groups %}
+      <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

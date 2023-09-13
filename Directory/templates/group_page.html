@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %} Nopixel Directory {% endblock %}
+
+{% block content %}
+<h1>Members:</h1>
+  <ul>
+    {% for member in gang_members %}
+      <li><a href = "https://www.twitch.tv/{{ member.character_streamer }}/">{{ member.character_name }}: {{ member.character_streamer.streamer_on_gta }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
