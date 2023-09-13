@@ -1,11 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Gang, Streamer, Character, CharacterGangLink
 
+active_group_names = ['PBSO','Hydra Gang','LSPD','The Mandem','Vendetta','SDSO','SASP','LSMG','Bondi Boys MC','Brouge Street Kingz','Diamond Dogs','Redline','HSPU','Angels',
+                 'Chang Gang','HOA','EMS','MCU','Goon School','Yokai','DOC','DOJ','Ballas','Mayhem','R.U.S.T','The Families','VCB','Gulag Gang','Lost MC','Marabunta Grande',
+                 'Piss Babiez','The Hidden','The Neon Tigers MC','Vagos','Venus Fly Traps','SASPR']
 
 def main_page(request):
 
-    groups = Gang.objects.all().order_by('-people_on_gta')
-    return(render(request, 'main_page.html', {'groups' : groups}))
+    active_groups = Gang.objects.filter(name__in=active_group_names).order_by('-people_on_gta')
+    inactive_groups = Gang.objects.exclude(name__in=active_group_names).order_by('-people_on_gta')
+    return(render(request, 'main_page.html', {'active_groups' : active_groups, 'inactive_groups' : inactive_groups}))
 
 
 def search(request):

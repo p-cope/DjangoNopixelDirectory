@@ -3,9 +3,15 @@
 {% block title %} Nopixel Directory {% endblock %}
 
 {% block content %}
-<h1>Groups:</h1>
+<h1>Active Groups:</h1>
   <ul>
-    {% for group in groups %}
+    {% for group in active_groups %}
+      <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
+    {% endfor %}
+  </ul>
+<h1>Inactive Groups:</h1>
+  <ul>
+    {% for group in inactive_groups %}
       <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
     {% endfor %}
   </ul>
