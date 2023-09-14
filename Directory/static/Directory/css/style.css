@@ -3,9 +3,30 @@ body {
     color: #efefef;
 }
 
+.navbar, .nav-link{
+    background: #0c0c0c;
+    color: #efefef;
+    font-size: 120%;
+}
+
+.card {
+    background: #0c0c0c;
+    color: #efefef;
+}
+
 @media (prefers-color-scheme: light) {
     body {
         background: #ffffff;
+        color: #000000;
+    }
+
+    .navbar, .nav-link {
+        background: #eaeaea;
+        color: #000000;
+    }
+
+    .card {
+        background: #eaeaea;
         color: #000000;
     }
 }
