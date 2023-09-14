@@ -3,7 +3,7 @@
 {% block title %} Nopixel Directory {% endblock %}
 
 {% block content %}
-  <div class="container-fluid" style="padding-left: 8%; padding-right: 8%;">
+  <div class="container-fluid" style="padding-left: 8%; padding-right: 8%; padding-top: 2%;">
     <div class="row mb-3">
       {% for group in active_groups %}
         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3">
@@ -23,10 +23,15 @@
       {% endfor %}
     </div>
   </div>
-<h1>Inactive Groups:</h1>
-  <ul>
-    {% for group in inactive_groups %}
-      <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
-    {% endfor %}
-  </ul>
+<div class="d-flex align-items-center justify-content-center vh-100 inactive-groups-dropdown">
+  <h2 class="mr-3 text-center">Inactive Groups:</h2>
+  <button id="toggleButton" class="btn btn-primary">Show</button>
+</div>
+  <div id="inactive_groups">
+    <ul>
+      {% for group in inactive_groups %}
+        <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

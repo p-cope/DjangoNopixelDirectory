@@ -3,6 +3,25 @@ body {
     color: #efefef;
 }
 
+#inactive_groups {
+    display: none;
+}
+
+#inactive_groups ul{
+    list-style-type: none;
+    column-count: 4;
+    column-gap: 20px;
+    color: #ffffff;
+}
+
+#inactive_groups ul li a{
+    color: #ffffff;
+}
+
+.inactive-groups-dropdown{
+    margin-bottom: 5rem;
+}
+
 .navbar, .nav-link{
     background: #0c0c0c;
     color: #efefef;
@@ -12,6 +31,22 @@ body {
 .card {
     background: #0c0c0c;
     color: #efefef;
+}
+
+.btn-primary {
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+    background: #0c0c0c;
+    color: #efefef;
+}
+
+.custom-form-width{
+    width: 20%;
+    max-width: 1200px;
+}
+
+.search-bar-input{
+    background-color:#0c0c0c;
+    width: 70%;
 }
 
 @media (prefers-color-scheme: light) {
@@ -27,6 +62,11 @@ body {
 
     .card {
         background: #eaeaea;
+        color: #000000;
+    }
+
+    .btn {
+        background: #ffffff;
         color: #000000;
     }
 }
