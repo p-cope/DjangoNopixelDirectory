@@ -3,12 +3,26 @@
 {% block title %} Nopixel Directory {% endblock %}
 
 {% block content %}
-<h1>Active Groups:</h1>
-  <ul>
-    {% for group in active_groups %}
-      <li><a href = "/group/{{ group.slug }}/">{{ group.name }}: {{ group.people_on_gta }}</a></li>
-    {% endfor %}
-  </ul>
+  <div class="container-fluid" style="padding-left: 5%; padding-right: 5%;">
+    <div class="row mb-5">
+      {% for group in active_groups %}
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+          <a href="/group/{{ group.slug }}/" class="text-decoration-none">
+            <div class="card" style ="height: 330px; overflow: hidden">
+              {% load static %}
+              {% with 'Directory/images/'|add:group.name|add:'.png' as image_path %}
+              <img src="{% static image_path %}" class="card-img-top" alt="{{ group.name }}" style = "height: 250px; object-fit: cover; width: 100%;">
+              {% endwith %}
+              <div class="card-body">
+                <h5 class="card-title">{{ group.name }}</h5>
+                <p class="card-text">People on GTA: {{ group.people_on_gta }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 <h1>Inactive Groups:</h1>
   <ul>
     {% for group in inactive_groups %}
