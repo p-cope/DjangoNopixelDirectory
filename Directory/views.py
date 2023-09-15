@@ -3,7 +3,7 @@ from .models import Gang, Streamer, Character, CharacterGangLink
 
 active_group_names = ['PBSO','Hydra Gang','LSPD','The Mandem','Vendetta','SDSO','SASP','LSMG','Bondi Boys MC','Brouge Street Kingz','Diamond Dogs','Redline','HSPU','Angels',
                  'Chang Gang','HOA','EMS','MCU','Goon School','Yokai','DOC','DOJ','Ballas','Mayhem','R.U.S.T','The Families','VCB','Gulag Gang','Lost MC','Marabunta Grande',
-                 'Piss Babiez','The Hidden','The Neon Tigers MC','Vagos','Venus Fly Traps','SASPR','Clowncil','Seaside']
+                 'The Hidden','The Neon Tigers MC','Vagos','Venus Fly Traps','SASPR','Clowncil','Seaside']
 
 def main_page(request):
 
