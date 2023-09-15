@@ -2,11 +2,37 @@
 
 {% block title %} Nopixel Directory {% endblock %}
 
+{% block navbar %}Members of {{ group.name }}{% endblock %}
+
 {% block content %}
-<h1>Members:</h1>
-  <ul>
-    {% for member in gang_members %}
-      <li><a href = "https://www.twitch.tv/{{ member.character_streamer }}/">{{ member.character_name }}: {{ member.character_streamer.streamer_on_gta }}</a></li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <table id="myTable" class="table table-striped table-bordered-vertical mt-5">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Character</th>
+              <th>On GTA</th>
+              <th>Title</th>
+              <th>Viewcount</th>
+              <th>Twitch</th>
+              </tr>
+            </thead>
+          <tbody>
+            {% for member in gang_members %}
+              <tr>
+                <td>{{ member.member_role }}</td>
+                <td>{{ member.character_name }}</td>
+                <td>{{ member.character_streamer.streamer_on_gta}}</td>
+                <td>{{ member.character_streamer.streamer_title}}</td>
+                <td>{{ member.character_streamer.streamer_viewcount}}</td>
+                <td><a href="https://www.twitch.tv/{{ member.character_streamer }}/">{{ member.character_streamer }}</a></td>
+                </tr>
+              {% endfor %}
+            </body>
+          </table>
+        </div>
+      </div>
+    </div>
+  {% endblock %}

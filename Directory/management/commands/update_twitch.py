@@ -77,7 +77,8 @@ class Command(BaseCommand):
 
         data = response.json().get('data', [])
 
-        final_data = [{'name': streamer_data.get('user_login').lower(), 'live': len(streamer_data) > 0, 'gta': streamer_data.get('game_name').lower() == "grand theft auto v"} for streamer_data in data]
+        final_data = [{'name': streamer_data.get('user_login').lower(), 'live': len(streamer_data) > 0, 'gta': streamer_data.get('game_name').lower() == "grand theft auto v",
+                        'title': streamer_data.get('title'),'viewcount': streamer_data.get('viewer_count')} for streamer_data in data]
         return final_data
 
 
@@ -129,7 +130,9 @@ class Command(BaseCommand):
 
                 Streamer.objects.filter(streamer_name__iexact = result.get('name')).update(
                     streamer_on_gta = result.get('gta'),
-                    streamer_is_live = True
+                    streamer_is_live = True,
+                    streamer_title = result.get('title'),
+                    streamer_viewcount = result.get('viewcount')
                 )
             
             group.people_live = people_live

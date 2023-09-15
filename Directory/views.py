@@ -22,4 +22,9 @@ def gang_detail(request, gang_name):
     gang = get_object_or_404(Gang, slug=gang_name)
     character_links = gang.characterganglink_set.order_by("-member_character__character_streamer__streamer_on_gta").all()
     gangmembers = [link.member_character for link in character_links]
+
+    for member in gangmembers:
+        link = CharacterGangLink.objects.filter(member_character=member, member_gang=gang).first()
+        member.member_role = (link.member_role).title() if link else None
+
     return render(request, 'group_page.html', {'group': gang, 'gang_members': gangmembers})

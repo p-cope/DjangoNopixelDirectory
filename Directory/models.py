@@ -23,6 +23,8 @@ class Streamer(models.Model):
     streamer_link = models.URLField()
     streamer_is_live = models.BooleanField()
     streamer_on_gta = models.BooleanField()
+    streamer_title = models.CharField(max_length=255, blank=True, default="")
+    streamer_viewcount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.streamer_name
