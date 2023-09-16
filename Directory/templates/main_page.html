@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %} Nopixel Directory {% endblock %}
 
 {% block navbar %}NoPixel Directory{% endblock %}
 
 {% block content %}
-  <div class="container-fluid" style="padding-left: 8%; padding-right: 8%; padding-top: 2%;">
+  <div class="container-fluid" style="padding-left: 6%; padding-right: 6%; padding-top: 1.5%;">
     <div class="row mb-3">
       {% for group in active_groups %}
-        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-4">
           <a href="/group/{{ group.slug }}/" class="text-decoration-none">
-            <div class="card" style ="height: 290px; overflow: hidden">
-              {% load static %}
+            <div class="card" style ="height: 270px; overflow: hidden; position: relative;">
               {% with 'Directory/images/'|add:group.name|add:'.png' as image_path %}
               <img src="{% static image_path %}" class="card-img-top" alt="{{ group.name }}" style = "height: 200px; object-fit: contain; width: 100%;">
               {% endwith %}
-              <div class="card-body">
+              <div class="card-body" style="position: absolute; bottom: 0; padding: 1rem;">
                 <h5 class="card-title">{{ group.name }}</h5>
                 <p class="card-text">Online: {{ group.people_on_gta }}</p>
               </div>

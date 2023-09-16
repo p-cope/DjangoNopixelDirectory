@@ -3,7 +3,7 @@ from .models import Gang, Streamer, Character, CharacterGangLink
 
 active_group_names = ['PBSO','Hydra Gang','LSPD','The Mandem','Vendetta','SDSO','SASP','LSMG','Bondi Boys MC','Brouge Street Kingz','Diamond Dogs','Redline','HSPU','Angels',
                  'Chang Gang','HOA','EMS','MCU','Goon School','Yokai','DOC','DOJ','Ballas','Mayhem','R.U.S.T','The Families','VCB','Gulag Gang','Lost MC','Marabunta Grande',
-                 'The Hidden','The Neon Tigers MC','Vagos','Venus Fly Traps','SASPR','Clowncil','Seaside']
+                 'The Hidden','The Neon Tigers MC','Vagos','Venus Fly Traps','SASPR','Clowncil','Seaside','The Cut', 'The Saints']
 
 def main_page(request):
 
@@ -20,7 +20,7 @@ def search(request):
 def gang_detail(request, gang_name):
 
     gang = get_object_or_404(Gang, slug=gang_name)
-    character_links = gang.characterganglink_set.order_by("-member_character__character_streamer__streamer_on_gta").all()
+    character_links = gang.characterganglink_set.order_by("-member_character__character_streamer__streamer_on_gta","-member_character__character_streamer__streamer_is_live","-member_character__character_streamer__streamer_viewcount").all()
     gangmembers = [link.member_character for link in character_links]
 
     for member in gangmembers:

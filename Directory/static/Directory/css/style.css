@@ -5,6 +5,13 @@ body {
 
 .custom-navbar-text {
     font-size: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.custom-navbar-home {
+    font-size: 26px;
 }
 
 #inactive_groups {
@@ -29,7 +36,10 @@ body {
 .navbar, .nav-link{
     background: #0c0c0c;
     color: #efefef;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
     font-size: 120%;
+    position: relative;
 }
 
 .card {
@@ -54,21 +64,29 @@ body {
     color:#ffffff;
 }
 
+tr:nth-of-type(even) {
+    background-color: #151515;
+}
+
+table {
+    border: 2px solid #bebebe;
+}
+
 .table-bordered-vertical th,
 .table-bordered-vertical td {
-    border-left: 1px solid #bebebe;
-    border-right: 1px solid #bebebe;
-    border-bottom: 1px solid #bebebe;
+    border-left: 2px solid #bebebe;
+    border-right: 2px solid #bebebe;
+    border-bottom: 2px solid #bebebe;
 }
 
 @media (prefers-color-scheme: light) {
     body {
-        background: #ffffff;
+        background: #dbdbdb;
         color: #000000;
     }
 
     .navbar, .nav-link {
-        background: #eaeaea;
+        background: #cacaca;
         color: #000000;
     }
 
@@ -92,11 +110,20 @@ body {
         color: #000000;
     }
 
+    tr:nth-of-type(even) {
+        background-color: #dcdcdc;
+    }
+
+    table {
+        border: 2px solid #141414;
+        border-bottom: 2px solid #141414;
+    }
+
     .table-bordered-vertical th,
     .table-bordered-vertical td {
-        border-left: 1px solid #141414;
-        border-right: 1px solid #141414;
-        border-bottom: 1px solid #141414;
+        border-left: 2px solid #141414;
+        border-right: 2px solid #141414;
+        border-bottom: 2px solid #141414;
     }
 
 }

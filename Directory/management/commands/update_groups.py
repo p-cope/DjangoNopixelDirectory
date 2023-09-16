@@ -29,10 +29,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        active_gov = [("PBSO", "/wiki/Paleto_Bay_Sheriff%27s_Office"),("SDSO", "/wiki/Senora_Desert_Sheriff%27s_Office"),("LSPD", "/wiki/Los_Santos_Police_Department"),
+        active_not_gang = [("PBSO", "/wiki/Paleto_Bay_Sheriff%27s_Office"),("SDSO", "/wiki/Senora_Desert_Sheriff%27s_Office"),("LSPD", "/wiki/Los_Santos_Police_Department"),
                           ("SASP", "/wiki/San_Andreas_State_Police"),("SASPR", "/wiki/San_Andreas_State_Park_Rangers"),("DOC", "/wiki/Department_of_Corrections"),
                           ("DOJ", "/wiki/Department_of_Justice"),("EMS", "/wiki/Emergency_Medical_Services"),("MCU", "/wiki/Major_Crimes_Unit"),("LSMG", "/wiki/Los_Santos_Medical_Group"),
-                          ("HSPU", "/wiki/High_Speed_Pursuit_Unit")]
+                          ("HSPU", "/wiki/High_Speed_Pursuit_Unit"), ("The Cut", "/wiki/The_Cut")]
 
         GANG_DIR_URL = 'https://nopixel.fandom.com/wiki/Category:Gangs'
         GANG_DIR_URL_2 = 'https://nopixel.fandom.com/wiki/Category:Gangs?from=Seaside'
@@ -58,7 +58,7 @@ class Command(BaseCommand):
                 group_names.append(item_title)
                 group_links.append(self.sanitize_wiki_link(line.get('href')))
 
-        for dep in active_gov:
+        for dep in active_not_gang:
 
             group_names.append(dep[0])
             group_links.append(self.sanitize_wiki_link(dep[1]))

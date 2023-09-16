@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %} Nopixel Directory {% endblock %}
 
 {% block navbar %}Members of {{ group.name }}{% endblock %}
@@ -7,16 +9,16 @@
 {% block content %}
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-6">
         <table id="myTable" class="table table-striped table-bordered-vertical mt-5">
           <thead>
             <tr>
               <th>Role</th>
               <th>Character</th>
               <th>On GTA</th>
-              <th>Title</th>
               <th>Viewcount</th>
               <th>Twitch</th>
+              <!--<th>Title</th>-->
               </tr>
             </thead>
           <tbody>
@@ -24,10 +26,17 @@
               <tr>
                 <td>{{ member.member_role }}</td>
                 <td>{{ member.character_name }}</td>
-                <td>{{ member.character_streamer.streamer_on_gta}}</td>
-                <td>{{ member.character_streamer.streamer_title}}</td>
+                <td>{% if member.character_streamer.streamer_on_gta == True %}
+                    GTA <img src="{% static 'Directory/images/online.png' %}" alt="Online" style="width: 15px; height: 15px;">
+                  {% elif member.character_streamer.streamer_is_live == True %}
+                    Variety <img src="{% static 'Directory/images/variety.png' %}" alt="Online" style="width: 15px; height: 15px;">
+                  {% else %}
+                    Offline <img src="{% static 'Directory/images/offline.png' %}" alt="Offline" style="width: 15px; height: 15px;">
+                  {% endif %}
+                </td>
                 <td>{{ member.character_streamer.streamer_viewcount}}</td>
-                <td><a href="https://www.twitch.tv/{{ member.character_streamer }}/">{{ member.character_streamer }}</a></td>
+                <td><a href="https://www.twitch.tv/{{ member.character_streamer }}/" title="{{ member.character_streamer.streamer_title }}">{{ member.character_streamer }}</a></td>
+                <!--<td>{{ member.character_streamer.streamer_title}}</td>-->
                 </tr>
               {% endfor %}
             </body>
