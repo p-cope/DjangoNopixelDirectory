@@ -31,8 +31,4 @@ def gang_detail(request, gang_name):
 
     members_around_data = [(data.timestamp.strftime('%Y-%m-%d %H:%M:%S'), data.people_live, data.people_on_gta) for data in gang_datas]
 
-    for i in members_around_data:
-        print(i)
-
-
     return render(request, 'group_page.html', {'group': gang, 'gang_members': gangmembers, 'gang_data': members_around_data})
