@@ -108,7 +108,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         
-        Streamer.objects.update(streamer_is_live = False, streamer_on_gta = False)
+        Streamer.objects.update(streamer_is_live = False, streamer_on_gta = False, streamer_title = "", streamer_viewcount = 0)
 
         all_groups = Gang.objects.all()
 
@@ -132,7 +132,7 @@ class Command(BaseCommand):
                     streamer_on_gta = result.get('gta'),
                     streamer_is_live = True,
                     streamer_title = result.get('title'),
-                    streamer_viewcount = result.get('viewcount')
+                    streamer_viewcount = result.get('viewcount') if result.get('viewcount') else 0
                 )
             
             group.people_live = people_live
