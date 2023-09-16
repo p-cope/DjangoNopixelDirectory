@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from Directory.models import Gang, Character, Streamer, CharacterGangLink
+from Directory.models import Gang, Character, Streamer, CharacterGangLink, GangData
 import requests, json, time, os
 import logging
 
@@ -110,6 +110,9 @@ class Command(BaseCommand):
         
         Streamer.objects.update(streamer_is_live = False, streamer_on_gta = False, streamer_title = "", streamer_viewcount = 0)
 
+        current_time = time.localtime(time.time())
+        print(str(current_time.tm_hour) + ':' + str(current_time.tm_min) + ':' + str(current_time.tm_sec))
+
         all_groups = Gang.objects.all()
 
         for group in all_groups:
@@ -134,7 +137,9 @@ class Command(BaseCommand):
                     streamer_title = result.get('title'),
                     streamer_viewcount = result.get('viewcount') if result.get('viewcount') else 0
                 )
-            
+
+            GangData.objects.create(gang_id = group.id, people_live = people_live, people_on_gta = people_on_gta)
+
             group.people_live = people_live
             group.people_on_gta = people_on_gta
             group.save()

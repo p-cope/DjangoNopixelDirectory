@@ -36,7 +36,6 @@
                 </td>
                 <td>{{ member.character_streamer.streamer_viewcount}}</td>
                 <td><a href="https://www.twitch.tv/{{ member.character_streamer }}/" title="{{ member.character_streamer.streamer_title }}">{{ member.character_streamer }}</a></td>
-                <!--<td>{{ member.character_streamer.streamer_title}}</td>-->
                 </tr>
               {% endfor %}
             </body>
@@ -44,4 +43,48 @@
         </div>
       </div>
     </div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
+<script>
+    var timestamps = [
+        {% for item in gang_data %}
+            "{{ item.0 }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    var people_on_gta = [
+        {% for item in gang_data %}
+            {{ item.2 }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+</script>
+<script> 
+ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: timestamps,
+        datasets: [{
+            label: 'Group Members Online',
+            data: people_on_gta,
+            fill: false,
+            borderColor: 'blue',
+            tension: 0.1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
   {% endblock %}

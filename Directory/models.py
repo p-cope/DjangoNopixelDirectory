@@ -46,3 +46,12 @@ class CharacterGangLink(models.Model):
 
     def __str__(self):
         return f"{self.member_character.character_name} in {self.member_gang.name}"
+    
+class GangData(models.Model):
+    gang = models.ForeignKey(Gang, on_delete=models.CASCADE)
+    people_live = models.IntegerField()
+    people_on_gta = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.gang.name} at {self.timestamp}"
