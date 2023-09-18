@@ -107,9 +107,7 @@ class Command(BaseCommand):
         }
 
     def handle(self, *args, **kwargs):
-        
-        Streamer.objects.update(streamer_is_live = False, streamer_on_gta = False, streamer_title = "", streamer_viewcount = 0)
-
+    
         current_time = time.localtime(time.time())
         print(str(current_time.tm_hour) + ':' + str(current_time.tm_min) + ':' + str(current_time.tm_sec))
 
@@ -121,6 +119,8 @@ class Command(BaseCommand):
 
             characterlinks = CharacterGangLink.objects.filter(member_gang_id=group.id)
             streamers = [link.member_character.character_streamer for link in characterlinks]
+
+            Streamer.objects.filter(streamer_name__in = streamers).update(streamer_is_live = False, streamer_on_gta = False, streamer_title = "", streamer_viewcount = 0)
 
             channel_data = self.are_channels_live([bloke.streamer_name for bloke in streamers])
 

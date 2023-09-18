@@ -27,8 +27,8 @@ def gang_detail(request, gang_name):
         link = CharacterGangLink.objects.filter(member_character=member, member_gang=gang).first()
         member.member_role = (link.member_role).title() if link else None
 
-    gang_datas = GangData.objects.filter(gang=gang).order_by('timestamp')
+    #gang_datas = GangData.objects.filter(gang=gang).order_by('timestamp')
 
-    members_around_data = [(data.timestamp.strftime('%Y-%m-%d %H:%M:%S'), data.people_live, data.people_on_gta) for data in gang_datas]
+    #members_around_data = [(data.timestamp.strftime('%Y-%m-%d %H:%M:%S'), data.people_live, data.people_on_gta) for data in gang_datas]
 
-    return render(request, 'group_page.html', {'group': gang, 'gang_members': gangmembers, 'gang_data': members_around_data})
+    return render(request, 'group_page.html', {'group': gang, 'gang_members': gangmembers})#, 'gang_data': members_around_data})
