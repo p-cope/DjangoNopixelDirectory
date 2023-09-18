@@ -1,6 +1,7 @@
 body {
     background: #111111;
     color: #efefef;
+    line-height: 0;
 }
 
 .custom-navbar-text {

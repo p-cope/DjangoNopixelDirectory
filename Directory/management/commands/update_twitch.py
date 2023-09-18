@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
-from Directory.models import Gang, Character, Streamer, CharacterGangLink, GangData
+from Directory.models import Gang, Character, Streamer, CharacterGangLink, GangData, UpdateTimestamp
 import requests, json, time, os
 import logging
+from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
@@ -143,3 +144,7 @@ class Command(BaseCommand):
             group.people_live = people_live
             group.people_on_gta = people_on_gta
             group.save()
+            
+        timestamp = UpdateTimestamp.load()
+        timestamp.last_updated = timezone.now()
+        timestamp.save()

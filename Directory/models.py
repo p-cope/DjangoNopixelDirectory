@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 class Gang(models.Model):
@@ -55,3 +56,15 @@ class GangData(models.Model):
     
     def __str__(self):
         return f"{self.gang.name} at {self.timestamp}"
+    
+class UpdateTimestamp(models.Model):
+    last_updated = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(UpdateTimestamp, self).save(*args, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1, defaults={'last_updated': timezone.now()})
+        return obj

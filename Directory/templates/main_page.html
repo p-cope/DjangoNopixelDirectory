@@ -7,7 +7,8 @@
 {% block navbar %}NoPixel Directory{% endblock %}
 
 {% block content %}
-  <div class="container-fluid" style="padding-left: 6%; padding-right: 6%; padding-top: 1.5%;">
+<time style="padding-left: 1rem;">updated {{ update_time }}</time>
+  <div class="container-fluid" style="padding-left: 6%; padding-right: 6%; padding-top: 0%;">
     <div class="row mb-3">
       {% for group in active_groups %}
         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-4">
